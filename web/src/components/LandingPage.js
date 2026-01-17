@@ -17,7 +17,7 @@ function LandingPage() {
           </a>
         </div>
         <div className="login-panel">
-          <div className='headings'>Real-Time Distributed Chat</div>
+          <div className='headings'>Real-Time Chat</div>
           <span>High throughput 🚀 low latency - realtime chat built in Go ❤️</span>
           <br />
           <br />
