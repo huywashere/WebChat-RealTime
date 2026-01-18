@@ -1,7 +1,6 @@
 # Trò chuyện phân tán theo thời gian thực
 
-Kho lưu trữ này chứa mã **frontend** (React.js), **backend** (Go-Fiber) và **Infrastructure** (Terraform, CI/CD) để xây dựng nền tảng nhắn tin phân tán, theo thời gian thực, có thể mở rộng. Nếu bạn là một nhà phát triển đang muốn tìm hiểu thiết kế hệ thống hoặc thậm chí đang tìm cách xây dựng các dự án toàn diện, tôi hy vọng bạn thấy điều này hữu ích ❤️
-
+Kho lưu trữ này chứa mã **frontend** (React.js), **backend** (Go-Fiber) và **Infrastructure** (Terraform, CI/CD) để xây dựng nền tảng nhắn tin phân tán, theo thời gian thực, có thể mở rộng.
 <br />
 Nhóm sẽ viết bài về nhiều tính năng của dự án như Định cấu hình nginx làm proxy ngược để cân bằng tải, chứng chỉ TLS/SSL cho giao tiếp HTTPS, Thiết lập cơ sở hạ tầng bằng Terraform.
 
