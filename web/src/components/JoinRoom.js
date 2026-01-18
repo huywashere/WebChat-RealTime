@@ -30,7 +30,7 @@ function JoinRoom() {
 
         ws.current.onerror = (error) => {
           console.error("WebSocket error:", error);
-          navigate('/login'); // Redirect to login on error
+          navigate('/login'); // Chuyển hướng đến đăng nhập do lỗi
         };
     }
 
@@ -72,8 +72,8 @@ function JoinRoom() {
     }
   };
 
-  let errorMessageToDisplay = null;
-  if (roomJoiningErrorMessage) {
+  let errorMessageToDisplay = null; //Khởi tạo một biến để chứa nội dung lỗi. Mặc định là null (không hiển thị gì)
+  if (roomJoiningErrorMessage) { //Kiểm tra xem có lỗi phát sinh khi vào phòng (Join Room) hay không (ví dụ: phòng đã đầy, sai mật khẩu)
     errorMessageToDisplay =  <span className="error-message">*{roomJoiningErrorMessage}</span>
   } else if (errorMessage) {
     errorMessageToDisplay = <span className="error-message">*{errorMessage}</span>

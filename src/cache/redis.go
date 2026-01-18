@@ -19,18 +19,18 @@ var RedisClient *redis.Client
 var PubSubConnection *redis.PubSub
 
 /*
-	A single go server instance have a single redis connection pool
-	From the redis connection pool, one connection is used for PubSub connection
-	That connection is used to subscribe to multiple channels
-	A single go-routine is used to listen for messages on all subscribed channels
+	Một phiên bản máy chủ go có một nhóm kết nối redis duy nhất
+	Từ nhóm kết nối redis, một kết nối được sử dụng cho kết nối PubSub
+	Kết nối đó được sử dụng để đăng ký nhiều kênh
+	Một quy trình duy nhất được sử dụng để nghe tin nhắn trên tất cả các kênh đã đăng ký
 
-	The server also maintains a local map of all connections
-	When a new connection is established, it is added to the map
+	Máy chủ cũng duy trì một bản đồ cục bộ của tất cả các kết nối
+	Khi một kết nối mới được thiết lập, nó sẽ được thêm vào bản đồ
 
-	Each room is a channel in redis
-	When someone wants to join a room, we add them to redis set and check if the server is already subscribed to that room
-	If not, we subscribe to that room using the dedicated PubSub connection
-	The same pubsub connection is used to subscribe to multiple channels
+	Mỗi phòng là một kênh trong redis
+	Khi ai đó muốn tham gia một phòng, chúng tôi sẽ thêm họ vào redis set và kiểm tra xem máy chủ đã đăng ký phòng đó chưa
+	Nếu không, chúng ta đăng ký phòng đó bằng kết nối PubSub chuyên dụng
+	Kết nối pubsub giống nhau được sử dụng để đăng ký nhiều kênh
 */
 
 func init() {

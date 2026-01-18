@@ -86,7 +86,7 @@ func Login(ctx *fiber.Ctx) error {
 			"message": "Username and password are required fields.",
 		})
 	}
-
+// Tìm kiếm người dùng trong Database theo tên đăng nhập
 	var user database.DBUser
 	if err := database.DB.Where("name = ?", request.Username).First(&user).Error; err != nil {
 		log.Printf("Error finding user in database: %v", err)
@@ -95,7 +95,7 @@ func Login(ctx *fiber.Ctx) error {
 			"message": "User not found. Please check your credentials.",
 		})
 	}
-
+// So sánh mật khẩu người dùng nhập vào với mật khẩu đã mã hóa trong DB
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Password)); err != nil {
 		log.Printf("Password mismatch: %v", err)
 		return ctx.JSON(fiber.Map{
@@ -103,7 +103,7 @@ func Login(ctx *fiber.Ctx) error {
 			"message": "Invalid password. Please try again.",
 		})
 	}
-
+// Nếu mật khẩu đúng, tạo mã JWT để người dùng dùng cho các lần sau
 	userID := strconv.FormatUint(uint64(user.ID), 10)
 	token, err := GenerateJWT(userID, user.Name)
 	if err != nil {
@@ -124,9 +124,9 @@ func Login(ctx *fiber.Ctx) error {
 func GenerateJWT(userID string, username string) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
-	claims["userID"] = userID
-	claims["username"] = username
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
-
+	claims["userID"] = userID // Lưu ID người dùng vào Token
+	claims["username"] = username // Lưu tên người dùng vào Token
+	claims["exp"] = time.Now().Add(time.Hour * 24).Unix() // Token hết hạn sau 24 giờ
+// Ký tên vào Token bằng một chuỗi bí mật (Secret Key) từ tệp cấu hình
 	return token.SignedString([]byte(config.Config.JwtSecret))
 }

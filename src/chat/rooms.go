@@ -55,9 +55,9 @@ func JoinRoom(room string, user *models.User) {
 func BroadcastToRoom(room string, message models.Message) {
 	key := "room:" + room
 	for _, userID := range getAllMembersInRoom(key) {
-		// Get the websocket connection for the user from the local map
+		// Nhận kết nối websocket cho người dùng từ bản đồ địa phương
 		if conn, exists := GetConnection(userID); exists {
-			// Send the message to the user
+			// Gửi tin nhắn cho người dùng
 			if err := conn.WriteJSON(message); err != nil {
 				log.Printf("Error sending message to user %s: %v\n", userID, err)
 				conn.Close()

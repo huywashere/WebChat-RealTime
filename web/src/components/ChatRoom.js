@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { WebSocketContext } from '../WebsocketContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import data from '@emoji-mart/data';
@@ -10,12 +10,25 @@ function ChatRoom() {
   const [input, setInput] = useState('');
   const [showPicker, setShowPicker] = useState(false);
 
+  // 1. Dán dòng này tại đây: Tạo một mốc tham chiếu cho cuối danh sách
+  const messagesEndRef = useRef(null);
+
   const location = useLocation();
   const navigate = useNavigate();
   const roomName = location.state?.roomName;
   const ws = useContext(WebSocketContext);
 
   const userID = localStorage.getItem('go-chat-userId');
+
+  // 2. Dán đoạn này tại đây: Hàm thực hiện việc cuộn xuống
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // 3. Dán useEffect này tại đây: Chạy hàm cuộn mỗi khi mảng messages thay đổi
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
@@ -85,7 +98,7 @@ function ChatRoom() {
 
 
   function messageWithLineBreaks(message) {
-    return message.split('\n').map((line, index, array) => (
+    return message.split('\n').map((line, index, array) => ( //Chia nhỏ chuỗi tin nhắn thành một mảng các dòng dựa trên ký tự xuống dòng. Duyệt qua từng dòng trong mảng để biến đổi chúng thành các phần tử React.
       index === array.length - 1 ? line : <React.Fragment key={index}>{line}<br/></React.Fragment>
     ));
   }
@@ -128,6 +141,7 @@ function ChatRoom() {
               </div>
             </div>
           )})}
+          <div ref={messagesEndRef} />
       </div>
       <div className="chat-room-footer">
         <button className="toggle-emoji-picker" onClick={handleEmojiPickerToggle}>😃</button>

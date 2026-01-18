@@ -27,7 +27,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 	}))
 
-	// Health check
+	// Health check server cho api
 	app.Get("/api/health", func(ctx *fiber.Ctx) error {
 		server := os.Getenv("SERVER_NAME")
 		return ctx.Status(fiber.StatusOK).JSON(fiber.Map{"status": "healthy", "server": server})
@@ -36,7 +36,7 @@ func main() {
 	app.Post("/api/auth/signup", auth.SignUp)
 	app.Post("/api/auth/login", auth.Login)
 
-	// Secure websocket connection
+	// Kết nối websocket an toàn
 	app.Use("/ws", upgradeToWebSocket)
 	app.Get("/ws/chat", websocket.New(chat.WebSocketHandler))
 
@@ -44,7 +44,7 @@ func main() {
 	log.Fatal(app.Listen(port))
 }
 
-// Authorize and Upgrate to websocket
+// Ủy quyền và nâng cấp lên websocket
 func upgradeToWebSocket(context *fiber.Ctx) error {
 	token := context.Query("token")
 	if token == "" {
@@ -52,7 +52,7 @@ func upgradeToWebSocket(context *fiber.Ctx) error {
 		return fiber.ErrUnauthorized
 	}
 
-	// Validate JWT token
+	// Xác thực JWT token
 	if err := auth.ValidateJWTToken(token); err != nil {
 		log.Println("Error validating JWT token:", err)
 		return fiber.ErrUnauthorized

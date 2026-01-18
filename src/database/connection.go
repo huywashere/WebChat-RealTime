@@ -39,7 +39,7 @@ func InitPostgres() {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 
-	// Migrate the schema
+	// Di chuyển lược đồ
 	DB.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
 	DB.AutoMigrate(&DBUser{}, &DBMessage{})
 }

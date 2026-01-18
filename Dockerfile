@@ -1,23 +1,23 @@
-# Use the official Golang image to create a build artifact.
+# Sử dụng hình ảnh Golang chính thức để tạo tạo phẩm xây dựng.
 FROM golang:1.19-alpine
 
-# Set the working directory inside the container.
+# Đặt thư mục làm việc bên trong container.
 WORKDIR /app
 
-# Copy go.mod and go.sum files to the working directory.
+# Sao chép tệp go.mod và go.sum vào thư mục làm việc.
 COPY go.mod go.sum ./
 
-# Download all dependencies.
+# Tải xuống tất cả các phụ thuộc.
 RUN go mod download
 
-# Copy the source code into the container.
+# Sao chép mã nguồn vào contaier.
 COPY src/ ./src
 
-# Set the working directory to the source code directory.
+# Đặt thư mục làm việc vào thư mục mã nguồn.
 WORKDIR /app/src
 
 # Build the application.
 RUN go build -o main .
 
-# Run the executable.
+# chạy thực thi được.
 CMD ["./main"]

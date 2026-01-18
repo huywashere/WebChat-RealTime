@@ -13,7 +13,7 @@ resource "aws_security_group" "security_group" {
     description = "Allow web inbound traffic"
     vpc_id = "vpc-id"
 
-    # Allow inbound traffic from port 80
+    # Cho phép lưu lượng truy cập vào từ cổng 80
     ingress {
         description = "HTTP"
         from_port = 80
@@ -22,7 +22,7 @@ resource "aws_security_group" "security_group" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    # Allow outbound traffic
+    # dòng này cụ thể cho phép lưu lượng truy cập đi prot từ -1
     egress {
         from_port = 0
         to_port = 0
