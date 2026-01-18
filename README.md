@@ -27,7 +27,7 @@ Nhóm sẽ viết bài về nhiều tính năng của dự án như Định cấ
     <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Badge">
 </div>
 
-## Architecture Diagram 🌠
+## Sơ đồ kiến ​​trúc 🌠
 <img src="https://raw.githubusercontent.com/JoyalAJohney/Realtime-Distributed-Chat/main/assets/diagrams_image.png" alt="landing page">
 
 
@@ -36,7 +36,7 @@ Nhóm sẽ viết bài về nhiều tính năng của dự án như Định cấ
 https://github.com/JoyalAJohney/Realtime-Distributed-Chat/assets/31545426/db55bf32-1e35-4071-a80e-9f4944614e71
 
 
-##Giới thiệu về dự án 🌌
+## Giới thiệu về dự án 🌌
 
 * Nhiều máy chủ Go-fiber cung cấp điểm cuối API (xác thực JWT) và kết nối WebSocket để liên lạc song công hoàn toàn. Các phiên bản Go này được định cấu hình trong Nginx (proxy ngược) hoạt động như một bộ cân bằng tải lớp 7.
   
@@ -96,8 +96,8 @@ Nhóm chỉ chia sẻ mã mẫu cho **Cơ sở hạ tầng** (đường ống & 
 ## Khởi chạy dự án
 nếu bạn muốn chạy mô hình llm, hãy bỏ ghi chú những thay đổi từ docker-compose (mô hình llama 2 yêu cầu kích thước gần 3,6 GB)
 
-Thực hiện lệnh dưới đây để xây dựng các thùng chứa ứng dụng
+Thực hiện lệnh dưới đây để xây dựng các thùng chứa ứng dụng.
 ```bash
 $ docker-compose up --build
 ```
-If the application starts perfectly fine, you should be able to head over to http://localhost:8080/
+Nếu ứng dụng khởi động hoàn toàn bình thường, bạn có thể truy cập http://localhost:8080/
