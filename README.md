@@ -52,7 +52,7 @@ https://github.com/JoyalAJohney/Realtime-Distributed-Chat/assets/31545426/db55bf
 * Để truy cập HTTPS an toàn, hãy cấp chứng chỉ và định cấu hình nó trong Nginx để liên lạc TLS/SSL an toàn.
   
 
-## Cài đặt và chạy dự án 🔧
+## Cài đặt dự án 🔧
 
 * Tạo tệp .env từ tệp env.sample.
 * Điền vào các giá trị dựa trên cấu hình yêu cầu của bạn.
