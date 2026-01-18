@@ -1,10 +1,9 @@
+# Trò chuyện phân tán theo thời gian thực
 
-# Real-time Distributed Chat
-
-This repo contains the **frontend** (React.js), **backend** (Go-Fiber) and **Infrastructure** (Terraform, CI/CD) code for building a distributed, real-time, scalable messaging platform. If you are a developer seeking to learn system design or even looking to find how end-to-end projects are build, I hope you find this useful ❤️
+Kho lưu trữ này chứa mã **frontend** (React.js), **backend** (Go-Fiber) và **Infrastructure** (Terraform, CI/CD) để xây dựng nền tảng nhắn tin phân tán, theo thời gian thực, có thể mở rộng. Nếu bạn là một nhà phát triển đang muốn tìm hiểu thiết kế hệ thống hoặc thậm chí đang tìm cách xây dựng các dự án toàn diện, tôi hy vọng bạn thấy điều này hữu ích ❤️
 
 <br />
-I will be writing articles on multiple features about the project like Configuring nginx as a reverse proxy for loadbalancing, TLS/SSL certificate for HTTPS communication, Setting up infrastructure using Terraform etc. So do follow me on HashNode (https://joyalajohney.hashnode.dev/). if you like the repo, please consider giving it a ⭐!
+Tôi sẽ viết bài về nhiều tính năng của dự án như Định cấu hình nginx làm proxy ngược để cân bằng tải, chứng chỉ TLS/SSL cho giao tiếp HTTPS, Thiết lập cơ sở hạ tầng bằng Terraform, v.v. Vì vậy, hãy theo dõi tôi trên HashNode (https://joyalajohney.hashnode.dev/). nếu bạn thích repo, vui lòng cân nhắc cho nó ⭐!
 
 .
 <img src="https://raw.githubusercontent.com/JoyalAJohney/Realtime-Distributed-Chat/main/assets/home.png" alt="landing page">
