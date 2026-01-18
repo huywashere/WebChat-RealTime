@@ -31,31 +31,31 @@ Nhóm sẽ viết bài về nhiều tính năng của dự án như Định cấ
 <img src="https://raw.githubusercontent.com/JoyalAJohney/Realtime-Distributed-Chat/main/assets/diagrams_image.png" alt="landing page">
 
 
-## Product Demo 🚀
+## Sản phẩm Demo 🚀
 
 https://github.com/JoyalAJohney/Realtime-Distributed-Chat/assets/31545426/db55bf32-1e35-4071-a80e-9f4944614e71
 
 
-## About the Project 🌌
+##Giới thiệu về dự án 🌌
 
-* Multiple Go-fiber servers providing API endpoints (JWT authentication) and WebSocket connections for full-duplex communication. These Go instances are configured under Nginx (reverse proxy) Which act a layer 7 loadbalancer.
+* Nhiều máy chủ Go-fiber cung cấp điểm cuối API (xác thực JWT) và kết nối WebSocket để liên lạc song công hoàn toàn. Các phiên bản Go này được định cấu hình trong Nginx (proxy ngược) hoạt động như một bộ cân bằng tải lớp 7.
   
-* To propagate messages for users within the same room but connected to multiple instances, we utilize Redis (Pub/Sub model). Each instance is subscribed to a particular channel in Redis and gets notified on receiving messages. All messages are stored in Postgres.
+* Để truyền bá tin nhắn cho người dùng trong cùng một phòng nhưng được kết nối với nhiều phiên bản, chúng tôi sử dụng Redis (mô hình Pub/Sub). Mỗi phiên bản được đăng ký một kênh cụ thể trong Redis và được thông báo khi nhận được tin nhắn. Tất cả tin nhắn được lưu trữ trong Postgres.
   
-* The database can undergo a heavy write load if we receive 10k messages/sec. To avoid this, we use kafka, a message stream designed for high throughput and low latency processing. A consumer (Go instance) will consume messages from kafka in batches and writes them to postgres.
+* Cơ sở dữ liệu có thể chịu tải trọng ghi lớn nếu chúng tôi nhận được 10k tin nhắn/giây. Để tránh điều này, chúng tôi sử dụng kafka, một luồng tin nhắn được thiết kế để xử lý thông lượng cao và độ trễ thấp. Một người tiêu dùng (ví dụ Go) sẽ sử dụng các tin nhắn từ kafka theo đợt và ghi chúng vào postgres.
   
-* The frontend for application is build using React.js and served in an Nginx container. All the nodes are containarized using Docker and Configured using Docker-Compose. We only expose the Reverse-Proxy (Nginx) to the outside world. Al requests are redirected from there.
+* Giao diện người dùng cho ứng dụng được xây dựng bằng React.js và được phân phối trong vùng chứa Nginx. Tất cả các nút được chứa bằng Docker và được định cấu hình bằng Docker-Compose. Chúng tôi chỉ hiển thị Reverse-Proxy (Nginx) với thế giới bên ngoài. Yêu cầu Al được chuyển hướng từ đó.
   
-* Next step is to deploy the application on AWS. A CI/CD pipeline is implemented using github actions. We use Terraform for setting up Infrastructure on AWS, configuring an EC2 instance, S3 storage, Security groups and Elastic IP. This is ntegrated into the CI/CD pipeline.
+* Bước tiếp theo là triển khai ứng dụng trên AWS. Quy trình CI/CD được triển khai bằng các hành động của github. Chúng tôi sử dụng Terraform để thiết lập Cơ sở hạ tầng trên AWS, định cấu hình phiên bản EC2, bộ lưu trữ S3, nhóm Bảo mật và IP đàn hồi. Điều này được tích hợp vào đường dẫn CI/CD.
   
-* For secure HTTPS access, Issue certificate and configure it in Nginx for secure TLS/SSL communication. 
+* Để truy cập HTTPS an toàn, hãy cấp chứng chỉ và định cấu hình nó trong Nginx để liên lạc TLS/SSL an toàn.
   
 
-## Setting Up 🔧
+## Cài đặt và chạy dự án 🔧
 
-* Create a .env file from the env.sample file.
-* Fill in the values based on your required configuration.
-* Make sure that the .env file is in the same level as docker-compose.yml file
+* Tạo tệp .env từ tệp env.sample.
+* Điền vào các giá trị dựa trên cấu hình yêu cầu của bạn.
+* Đảm bảo rằng tệp .env có cùng cấp độ với tệp docker-compose.yml
   
 ```bash
 # Redis Config
@@ -91,12 +91,12 @@ LLM_PORT=11434
 SERVER_PORT=8080
 ```
 
-I have only shared the template code for **Infrastructre** (pipeline & terraform). You need to configure the AWS credentials, Terraform, and Pipeline according to your requirements. Additionally, you'll have to set up TLS/SSL for HTTPS (since all of this information is sensitive, it has been omitted)
+Nhóm chỉ chia sẻ mã mẫu cho **Cơ sở hạ tầng** (đường ống & địa hình). Bạn cần định cấu hình thông tin đăng nhập AWS, Terraform và Pipeline theo yêu cầu của mình. Ngoài ra, bạn sẽ phải thiết lập TLS/SSL cho HTTPS (vì tất cả thông tin này đều nhạy cảm nên đã bị bỏ qua)
 
-## Running the app
-if you wish to run llm model, uncomment the changes from docker-compose (llama 2 model requires almost 3.6GB size)
+## Khởi chạy dự án
+nếu bạn muốn chạy mô hình llm, hãy bỏ ghi chú những thay đổi từ docker-compose (mô hình llama 2 yêu cầu kích thước gần 3,6 GB)
 
-Execute the below command to build the application containers
+Thực hiện lệnh dưới đây để xây dựng các thùng chứa ứng dụng
 ```bash
 $ docker-compose up --build
 ```
